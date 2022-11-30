@@ -17,9 +17,13 @@ package com.example.lemonade
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
+
+//JCVA Declare logging tag
+private const val TAG = "Lemonade State"
 
 class MainActivity : AppCompatActivity() {
 
@@ -74,6 +78,12 @@ class MainActivity : AppCompatActivity() {
             //false
             showSnackbar()
         }
+        logging()
+    }
+
+    //JCVA: logging state
+    fun logging() {
+        Log.v(TAG, lemonadeState)
     }
 
     /**
@@ -113,6 +123,14 @@ class MainActivity : AppCompatActivity() {
 
         // TODO: lastly, before the function terminates we need to set the view elements so that the
         //  UI can reflect the correct state
+
+        //Change from SELECT to SQUEEZE
+        if (lemonadeState == SELECT) {
+            lemonadeState = SQUEEZE
+        }
+
+
+
     }
 
     /**
@@ -121,6 +139,7 @@ class MainActivity : AppCompatActivity() {
     private fun setViewElements() {
         val textAction: TextView = findViewById(R.id.text_action)
         // TODO: set up a conditional that tracks the lemonadeState
+        // Done by JCVA
         when (lemonadeState) {
             SELECT -> {
                 textAction.text = getString(R.string.lemon_select)
